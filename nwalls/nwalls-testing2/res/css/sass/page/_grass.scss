@@ -1,0 +1,63 @@
+.grass-page{
+	background:#F2F9FF;
+	overflow:hidden;
+
+	.grass{
+		width:100%;
+		@include position(absolute, null 0 0 0);
+		margin:auto;
+
+		.blade-container{
+			float:left;
+			margin:0 5px;
+			width:5px;
+			height:100px;
+			position:relative;
+			
+			.blade{
+				width:100%;
+				height:100%;
+				@include position(absolute, 0 0 0 0);
+				background:#019B00;
+				transform-origin:center bottom;
+				@include transition(transform linear 0.1s);
+				//@include animation(grass 4s linear infinite);
+			}
+			/*.bounds{
+				display:none;
+				width:200px;
+				height:200px;
+				@include position(absolute, -100px null 0 -100px);
+				border:1px solid #000000;
+			}*/
+			/*
+			&:nth-child(2n){
+				.blade{
+					@include animation-delay(0.1s);
+				}
+			} 
+			&:nth-child(3n){
+				.blade{
+					@include animation-delay(0.2s);
+				}
+			}
+			&:nth-child(4n){
+				.blade{
+					@include animation-delay(0.3s);
+				}
+			}*/
+		}
+	}
+}
+@include keyframes(grass){
+	0%{
+		@include transform(rotate(10deg));
+	}
+	50%{
+		@include transform(rotate(-10deg));
+	}
+	100%{
+		@include transform(rotate(10deg));
+	}
+	
+}

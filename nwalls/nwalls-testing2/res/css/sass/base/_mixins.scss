@@ -1,0 +1,75 @@
+/*
+ * @name: %list-reset
+ * @args: n/a
+ * @description: Applies to a ul or ol element. Removes default
+ *               list style, padding, and margin.
+ */
+
+%list-reset {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+/*
+ * @name: %list-reset-horiz
+ * @args: n/a
+ * @description: applies to a ul or ol element. Removes default
+ *               list style, padding, and margin. Sets li child
+ *               elements to disply: inline-block. Useful for
+ *               navigation and category lists.
+ */
+
+%list-reset-horiz {
+	@extend %list-reset;
+	li { display: inline-block; }
+}
+
+
+
+/*
+ * @name: %vertical-align
+ * @args: n/a
+ * @description: Vertically aligns an element in the center of
+ *               its parent. Parent element must be of a fixed
+ *               height. If the browser doesn't support transforms,
+ *               it's a good idea to apply a fallback style that
+ *               sets a reasonable top value.
+ */
+
+%vertical-align {
+	@include position(relative, 50% null null null);
+	@include transform(translateY(-50%));
+}
+
+
+
+/*
+ * @name: @wysiwyg
+ * @args: $margin-side, $margin-bottom, $image-max-width
+ * @description: Applies to an element that contains WYSIWYG
+ *               content. Gives sensible default margin values
+ *               and max-width for floated image child elements.
+ */
+
+@mixin wysiwyg($margin-side:30px, $margin-bottom:30px, $image-max-width: 100%){
+	img{ max-width: $image-max-width; height:auto; }
+	img[style^="float:left;"],
+	img[style^="float: left;"],
+	img[style^="float :left;"],
+	img[style*=" float:left;"],
+	img[style*=" float: left;"],
+	img[style*=" float :left;"]{
+		margin:{right:$margin-side; bottom:$margin-bottom;}
+	}
+	img[style^="float:right;"],
+	img[style^="float: right;"],
+	img[style^="float :right;"],
+	img[style*=" float:right;"],
+	img[style*=" float: right;"],
+	img[style*=" float :right;"]{
+		margin:{left:$margin-side; bottom:$margin-bottom;}
+	}
+}

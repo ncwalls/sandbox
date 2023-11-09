@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Website Name</title>
+		<?php include_once 'Templates/includes/head.php' ?>
+		
+	</head>
+	<body class="grass-page">
+		
+		<div class="grass">
+			<?php
+				echo str_repeat('<div class="blade-container"><span class="blade"></span></div>',100);
+			?>
+		</div>
+		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="res/js/snap.svg-min.js"></script>
+		
+		<script type="text/javascript">
+		
+			$(document).ready(function(){
+				
+				Number.prototype.map = function ( in_min , in_max , out_min , out_max ) {
+					return ( this - in_min ) * ( out_max - out_min ) / ( in_max - in_min ) + out_min;
+				}
+				
+				 var mX, mY, relX, distance,
+					$distance = $('.bounds'),
+					$element  = $('.blade-container');
+			
+				function calculateDistance(elem, mouseX, mouseY) {
+					return Math.floor(Math.sqrt(Math.pow(mouseX - (elem.offset().left+(elem.width()/2)), 2) + Math.pow(mouseY - (elem.offset().top+(elem.height()/2)), 2)));
+				}
+			
+				$(document).mousemove(function(e) {
+					$('.blade-container').each(function(index, element) {
+							
+					var el = $(element);
+						mX = e.pageX;
+						mY = e.pageY;
+						relX = mX - el.offset().left;
+						distance = calculateDistance(el, mX, mY);
+						
+						var ro = Math.abs(distance.map( 0 , 200 , -45 , 0 ));
+						
+						if(relX > 0){
+							ro = -ro;
+						}
+						if(distance > 200){
+							$(this).find('.blade').css('transform','translate3d(0,0,0) rotate(0deg)');
+						}
+						else{
+							$(this).find('.blade').css('transform','translate3d(0,0,0) rotate('+ro+'deg)');
+						}
+					});
+				});
+					
+			});
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,65 @@
+.svg-page{
+	cursor:url(/navi.png) 0 0, auto;
+	
+	#svg_plant{
+		display:none;
+		width:200px;
+		path{
+			fill:#61D900;
+		}
+	}
+	#leaf1{
+	}
+	#leaf2{
+	}
+	#leaf3{
+	}
+	#stem{
+	}
+	#hourglass-container{
+		display:none;
+		width:200px;
+		height:200px;
+		margin:0 auto;
+	
+		#hourglass{
+			@include transform(rotate(0deg));
+			@include transition(transform 0.5s);
+		}
+
+		&.rotate{
+			#hourglass{
+				@include transform(rotate(720deg));
+			}
+		}
+	}
+	#hourglass{
+		width:100%;
+		height:100%;
+		
+	}
+	
+	#lines{
+		width:200px;
+		height:200px;
+		margin:0 auto;
+		/*
+		path{
+			@include transition(all 0.5s);
+
+			&.line2{
+				transition-delay:0.5s;
+			}
+			&.line3{
+				transition-delay:1s;
+			}
+		}
+		
+		&:hover{
+			path{
+				stroke-dashoffset:0 !important;
+			}
+		}*/
+	}
+}
+

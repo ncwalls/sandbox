@@ -1,0 +1,34 @@
+body{
+	background:#fff;
+	overflow:hidden;
+}
+#particles span{
+	display:block;
+	width:50px;
+	height:50px;
+	float:left;
+	position:relative;
+}
+#particles span:after{
+	content:"";
+	display:block;
+	width:20px;
+	height:20px;
+	position:absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	margin:auto;
+	opacity:0;
+	background:#99FF00;
+	border-radius:10px;
+	transition:all 2s;
+}
+
+#particles span:hover:after{
+	background:#23B7FF;
+	opacity:1;
+	transform:scale(2);
+	transition:none;
+}

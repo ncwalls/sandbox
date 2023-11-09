@@ -1,0 +1,27 @@
+.page-header {
+	background:#000;
+	padding:0.5em;
+	box-shadow:0 0 5px rgba(0,0,0,0.5);
+	
+	
+	.page-heading{
+		color:#A4AEB9;
+		font-size:2em;
+		letter-spacing:0.2em;
+		word-spacing:0.5em;
+		text-decoration:none;
+		text-transform:uppercase;
+		@include transition(opacity 0.3s);
+		
+		&:hover{
+			opacity:0.8;
+		}
+		
+		@include media($bp-tablet){
+			font-size:1.5em;
+		}
+		@include media($bp-mobile){
+			font-size:1.2em;
+		}
+	}
+}

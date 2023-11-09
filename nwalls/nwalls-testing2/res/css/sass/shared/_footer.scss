@@ -1,0 +1,48 @@
+$ooh-colors: (
+    blue    : #2ba8e0 1.3s,
+    green   : #8bc541 1.1s,
+    orange  : #f7971d 0.8s,
+    pink    : #ec2279 0.5s,
+    purple  : #922a8c 0.3s,
+    red     : #c0272d 0.2s
+);
+.page-footer {
+    .ooh-logo {
+        position: relative;
+
+        svg {
+            display: inline-block;
+            width: 38px;
+            height: 38px;
+        }
+
+        path {
+            fill: #8c8c8c;
+            @include transition( fill 0.2s ease);
+        }
+        @each $color, $details in $ooh-colors {
+            //Timing
+            path.#{"" + $color} {
+                @include transition( fill nth($details, 2) ease);    
+            }
+            //Fill colors
+            &:hover path.#{"" + $color} {
+                fill: nth($details, 1);
+            }
+        }
+    }
+    // No SVG Support
+    .no-svg {
+
+        .ooh-logo {
+            background-image: url('/res/images/no-svg/ooh-logo-gray.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            height: 100%;
+            
+            &:hover {
+                background-image: url('/res/images/no-svg/ooh-logo-color.png');
+            }
+        }
+    }
+}

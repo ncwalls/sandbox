@@ -1,0 +1,3 @@
+@mixin honeypot($class: hp){
+	.#{$class} { @include position(fixed, 200% 0 0 0); }
+}

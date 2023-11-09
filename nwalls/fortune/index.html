@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>fortune teller thing</title>
+<link rel="stylesheet" type="text/css" href="fortune.css">
+</head>
+
+<body>
+	<h1>Fortune</h1>
+	<div id="thingy-container">
+		<div id="thingy">
+			<div class="outer">
+				<div class="button tl" data-steps="6" data-content="summer" data-action="start"></div>
+				<div class="button tr" data-action="start" data-steps="5" data-content="spring"></div>
+				<div class="button br" data-steps="1" data-content="winter" data-action="start"></div>
+				<div class="button bl" data-steps="4" data-content="fall" data-action="start"></div>
+			</div>
+			
+			<div class="inner inner-1">
+				<div class="button tl" data-action="continue" data-steps="8" data-content="sciences"></div>
+				<div class="button tr" data-action="continue" data-steps="3" data-content="math"></div>
+				<div class="button br" data-action="continue" data-steps="4" data-content="arts"></div>
+				<div class="button bl" data-action="continue" data-steps="1" data-content="undeclared"></div>
+			</div>
+			
+			<div class="inner inner-2">
+				<div class="button tl" data-action="continue" data-steps="1" data-content="undeclared"></div>
+				<div class="button tr" data-action="continue" data-steps="4" data-content="arts"></div>
+				<div class="button br" data-action="continue" data-steps="3" data-content="math"></div>
+				<div class="button bl" data-action="continue" data-steps="8" data-content="sciences"></div>
+			</div>
+
+			<div class="inner-end end-1">
+				<div class="button tl" data-action="end" data-msg="msg-1" data-content="sciences"></div>
+				<div class="button tr" data-action="end" data-msg="msg-2" data-content="math"></div>
+				<div class="button br" data-action="end" data-msg="msg-3" data-content="arts"></div>
+				<div class="button bl" data-action="end" data-msg="msg-4" data-content="undeclared"></div>
+			</div>
+
+			<div class="inner-end end-2">
+				<div class="button tl" data-action="end" data-msg="msg-5" data-content="undeclared"></div>
+				<div class="button tr" data-action="end" data-msg="msg-6" data-content="arts"></div>
+				<div class="button br" data-action="end" data-msg="msg-7" data-content="math"></div>
+				<div class="button bl" data-action="end" data-msg="msg-8" data-content="sciences"></div>
+			</div>
+		</div>
+		
+		<div class="message-container">
+			<div class="message" id="msg-1">
+				<h2>Message #1</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div class="message" id="msg-2">
+				<h2>Message #2</h2>
+				<p>Lorem ipsum dolor sit amet.</p>
+			</div>
+			<div class="message" id="msg-3">
+				<h2>Message #3</h2>
+				<p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div class="message" id="msg-4">
+				<h2>Message #4</h2>
+				<p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div class="message" id="msg-5">
+				<h2>Message #5</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+			</div>
+			<div class="message" id="msg-6">
+				<h2>Message #6</h2>
+				<p>Incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div class="message" id="msg-7">
+				<h2>Message #7</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+			</div>
+			<div class="message" id="msg-8">
+				<h2>Message #8</h2>
+				<p>Lorem ipsum.</p>
+			</div>
+			<a href="#" class="restart" data-action="restart">Start Over</a>
+		</div>
+	</div>
+	<script
+	  src="https://code.jquery.com/jquery-1.12.4.min.js"
+	  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+	  crossorigin="anonymous"></script>
+	<script src="fortune.js"></script>
+</body>
+</html>

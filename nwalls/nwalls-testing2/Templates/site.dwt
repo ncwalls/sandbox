@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- TemplateBeginEditable name="doctitle" --><title><?= WEBSITE_NAME ?></title><!-- TemplateEndEditable -->
+		<?php include_once 'Templates/includes/head.php' ?>
+		<!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+		<!-- TemplateParam name="bodyClass" type="text" value="" -->
+	</head>
+	<body class="@@(bodyClass)@@">
+    <?php include_once 'Templates/includes/header.php' ?>
+		<!-- TemplateBeginEditable name="ooh_editable_0" -->
+		<!-- TemplateEndEditable -->
+		<div class="content">
+		<!-- TemplateBeginEditable name="body" -->
+		<!-- TemplateEndEditable -->
+		</div>
+		<!-- TemplateBeginEditable name="ooh_editable_1" -->
+		<!-- TemplateEndEditable -->
+    <?php include_once 'Templates/includes/footer.php' ?>
+    <?php include_once 'Templates/includes/footer-js.php' ?>
+	</body>
+</html>

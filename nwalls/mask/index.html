@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>mask</title>
+<style type="text/css">
+	body{
+		background: linear-gradient(#B9C6D7, #D5C3AF);
+		height: 100vh;
+		margin: 0;
+		overflow: hidden;
+		padding: 5%;
+		width: 100%;
+	}
+
+	.bean{
+		margin: auto;
+		position: relative;
+		text-align: center;
+		width: 80%;
+		height: 500px;
+	}
+
+	.txt{
+		color: #000;
+		font-family: Impact;
+		font-size: 200px;
+		line-height: 1;
+		/*text-shadow: 0 3px 5px rgba(0,0,0,1);*/
+		position: relative;
+		text-align: center;
+		z-index: 3;
+	}
+
+	img{
+		margin: 0 auto;
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		width: 350px;
+
+	}
+
+	.front{
+		mask-image: url("bean-mask2.png");
+		mask-size: 350px 500px;
+		mask-repeat: no-repeat;
+		-webkit-mask-image: url("bean-mask2.png");
+		-webkit-mask-size: 350px 500px;
+		-webkit-mask-repeat: no-repeat;
+		z-index: 5;
+	}
+
+	.back{
+		box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+		z-index: 1;
+	}
+
+</style>
+</head>
+
+<body>
+	<div class="bean">
+		<img class="back" src="bean-beach.jpg" alt="">
+		<div class="txt">BEAN</div>
+		<img class="front" src="bean-beach.jpg" alt="">
+	</div>
+</body>

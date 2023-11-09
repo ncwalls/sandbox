@@ -1,0 +1,166 @@
+/*
+	Custom Simple Selects v.02
+*/
+
+
+// ---------- Size ---------- //
+
+$ss-width: 100%;
+$ss-font-size: 16px;
+$ss-padding: 10px;
+
+// ---------- Colors ---------- //
+
+// Default
+$ss-text-color: #333;
+$ss-bg-color  : #dedede;
+
+// Hovered
+$ss-placholder-hover-text-color: #dedede;
+$ss-placeholder-hover-bg-color : #333;
+$ss-options-hover-text-color   : #dedede;
+$ss-options-hover-bg-color     : #333;
+
+// Borders
+$ss-border-color : #777;
+$ss-border-radius: 2px;
+$ss-border-width : 1px;
+
+// ---------- Arrows ---------- //
+
+//Triangle, Angle, Default
+$arrow: angle;
+
+.hidden_select_container {
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+.simpleselect,
+.simpleselect * {
+	box-sizing: content-box;
+}
+
+.simpleselect {
+	position: relative;
+	width: $ss-width;
+	color: $ss-text-color;
+	font-size: $ss-font-size;
+}
+
+.simpleselect .options {
+	width: $ss-width;
+	width: calc( #{$ss-width} - #{$ss-border-width} - #{$ss-border-width} );
+}
+
+.simpleselect .placeholder,
+.simpleselect .options .option,
+.simpleselect .options .optgroup .optgroup-label {
+    padding: $ss-padding;
+    line-height: $ss-font-size;
+    cursor: pointer;
+    min-height: $ss-font-size;
+}
+
+.simpleselect .options .optgroup .optgroup-label {
+	cursor: default;
+	font-weight: bold;
+}
+
+.simpleselect .options .optgroup .option {
+	padding-left: $ss-padding;
+}
+
+.simpleselect .placeholder,
+.simpleselect .options {
+	background-color: $ss-bg-color;
+	border: $ss-border-width solid $ss-border-color;
+	-webkit-border-radius: $ss-border-radius;
+	-moz-border-radius: $ss-border-radius;
+	border-radius: $ss-border-radius;
+}
+
+.simpleselect .options .option {
+	&:first-child {
+		border-radius: ($ss-border-radius - $ss-border-width) ($ss-border-radius - $ss-border-width) 0 0;
+	}
+
+	&:last-child {
+		border-radius: 0 0 ($ss-border-radius - $ss-border-width) ($ss-border-radius - $ss-border-width);
+	}
+}
+
+.simpleselect .placeholder {
+	position: relative;
+	z-index: 1;
+}
+
+.simpleselect .placeholder:hover {
+	color: $ss-placholder-hover-text-color;
+	background-color: $ss-placeholder-hover-bg-color;
+}
+
+.simpleselect .options {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+
+.simpleselect .options .option.active {
+	background-color: $ss-options-hover-bg-color;
+	color: $ss-options-hover-text-color;
+}
+
+.simpleselect.disabled .placeholder,
+.simpleselect.disabled .placeholder:hover {
+	background-color: darken($ss-bg-color, 10%);
+	color: darken($ss-text-color, 30%);
+	border-color: darken($ss-border-color, 10%);
+	cursor: default;
+}
+
+.simpleselect.disabled .placeholder:after {
+	opacity: .5;
+}
+
+@if $arrow==default {
+	.simpleselect .placeholder:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: $ss-padding;
+		width: 8px;
+		background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAOCAYAAAASVl2WAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjA0Q0FGMUI4RTU1MTFFMzhGMThCQzUzMTMxMzdBN0YiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjA0Q0FGMUM4RTU1MTFFMzhGMThCQzUzMTMxMzdBN0YiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2MDRDQUYxOThFNTUxMUUzOEYxOEJDNTMxMzEzN0E3RiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2MDRDQUYxQThFNTUxMUUzOEYxOEJDNTMxMzEzN0E3RiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pq8U8ZgAAAClSURBVHjaYpw7dw4DEggEYh4gXgwTYEGS5AfiyVD6FBDfBAkyISloB2JpqAlLgZgNWYENEGciKTYG4haYFSCVKA6BglIg3gdSIAHEfQzYASfj////GfABJgYCgGXevLlyQNoDh/xrkBteAHEREKtjUeAJsuIXEKdgkewG4h0wNxwB4ulIkmeBuAbdkZVA/BSIvwBxNNRklLj4CMS50KC+CRMECDAA5ogdqmResXgAAAAASUVORK5CYII=") 0 center no-repeat;
+	}
+
+} @else if $arrow==triangle {
+	.simpleselect .placeholder:after {
+		content: "";
+		z-index: 1005;
+		@include position(absolute, ($ss-padding + $ss-font-size/2 - 3) ($ss-padding+6) null null);
+		@include triangle(12px, $ss-text-color, down);
+		@include transition(all .2s);
+	}
+	.simpleselect.active .placeholder:after {
+		@include transform(rotate(180deg));
+	}
+
+} @else if $arrow==angle {
+	.simpleselect .placeholder:after {
+		border-right: 2px solid $ss-text-color;
+		border-bottom: 2px solid $ss-text-color;
+		content: "";
+		z-index: 1005;
+		@include position(absolute, ($ss-padding+1) ($ss-padding+6) null null);
+		@include size(8px 8px);
+		@include transform(rotate(45deg));
+		@include transition(all .2s);
+	}
+	.simpleselect.active .placeholder:after {
+		@include transform(rotate(225deg) translate(-4px, -3px));
+	}
+}

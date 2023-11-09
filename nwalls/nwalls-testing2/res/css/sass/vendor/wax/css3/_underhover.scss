@@ -1,0 +1,10 @@
+@mixin underhover($u:true){
+	@if $u{
+		text-decoration:none;
+		&:hover{text-decoration:underline;}
+	}
+	@else{
+		text-decoration:underline;
+		&:hover{text-decoration:none;}
+	}
+}

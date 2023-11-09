@@ -1,0 +1,87 @@
+*,*:before,*:after{
+	box-sizing:border-box;
+}
+html{
+	/*min-height:100%;*/
+}
+body{
+	background:#000;
+	/*min-height:100%;*/
+	padding:0;
+	margin:0;
+	overflow:hidden;
+	text-align:center;
+	font-family:sans-serif;
+}
+#container {
+}
+h1{
+	font-size:3em;
+}
+.glitch{
+	display:inline-block;
+	position:relative;
+	color:#fff;
+	text-shadow: inset 0 0 3px #f00;
+	/*transition: transform 0.1s;*/
+}
+.glitch:hover{
+	/*transform:scale(1.5,0.8) skew(-10deg,0);*/
+	animation: glitch 0.1s linear;
+}
+
+.glitch:before,
+.glitch:after{
+	display:block;
+	width:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	opacity:0;
+	content:attr(data-words);
+	/*transition: transform 0.1s;*/
+}
+.glitch:before{
+	color:#f00;
+	left:-5px;
+	animation-delay:0.2s;
+	/*transform:translate(-20px,0) scale(1.1,0.8);*/
+}
+.glitch:after{
+	color:#0ff;
+	left:5px;
+	animation-delay:0.1s;
+	/*transform:translate(20px,0) scale(1.2,0.9);*/
+}
+
+.glitch:hover:before,
+.glitch:hover:after{
+	opacity:0.5;
+	animation: glitch2 0.2s linear;
+}
+
+@keyframes glitch{
+	0%{
+		transform:scale(2,0.5) skew(-10deg,0) translateX(10px);
+	}
+	50%{
+		transform:scale(0.8,4) skew(5deg,0) translateX(-10px);
+	}
+	100%{
+		transform:scale(1.5,0.8) skew(-10deg,0) translateX(0px);
+	}
+}
+@keyframes glitch2{
+	0%{
+		transform:scale(1.5,0.2) skew(-10deg,0) translateX(-10px);
+		opacity:0.3;
+	}
+	50%{
+		transform:scale(0.3,1.5) skew(5deg,0) translateX(10px);
+		opacity:0.7;
+	}
+	100%{
+		transform:scale(1.5,0.2) skew(-10deg,0) translateX(0px);
+		opacity:0.3;
+	}
+}

@@ -1,0 +1,49 @@
+@mixin button(
+	//Version 0.2
+	$type			:"flat",
+	$textColor		:#fff, 
+	$baseColor		:#d19221,
+	$baseVariance	:20%,
+	$topColor		:false,
+	$bottomColor	:false,
+	$activeBaseColor:#533e2d, 
+	$activeTopColor	:false,
+	$activeBottomColor:false,
+	$padding		:0px,
+	$borderRadius 	:5px
+) {
+	color: $textColor !important; 
+	padding: $padding;
+	text-decoration: none; 	font-weight: bold; text-align: center;
+	border-radius: $borderRadius;
+	box-shadow:1px 1px 2px rgba(0,0,0,0.3);
+	&:active, :focus { box-shadow:inset -1px -1px 2px rgba(0,0,0,0.3); }
+
+	@if $type == "plastic"{
+		@if ($topColor == false) and ($bottomColor == false) {
+			@include linear-gradient(tint($baseColor, $baseVariance), shade($baseColor, $baseVariance)); 
+		} @else {
+			$baseColor:mix($topColor, $bottomColor, 50%);
+			@include linear-gradient($topColor, $bottomColor); 
+		}
+	}
+	@if $type == "flat"{
+		background: $baseColor;
+	}
+	text-shadow:1px 1px 2px shade($baseColor, 30%);
+	&:hover, &:focus {
+		text-decoration: none !important;
+		text-shadow:none;
+		@if $type == "plastic"{
+			@if ($topColor == false) and ($bottomColor == false) {
+				@include linear-gradient(tint($activeBaseColor, $baseVariance), shade($activeBaseColor, $baseVariance));
+			} @else {
+				$activeBaseColor:mix($activeTopColor, $activeBottomColor, 50%);
+				@include linear-gradient($activeTopColor, $activeBottomColor); 
+			}
+		}
+		@if $type == "flat"{
+			background: $activeBaseColor;
+		}		
+	}
+}

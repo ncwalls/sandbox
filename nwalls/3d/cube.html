@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>3d</title>
+<link rel="stylesheet" type="text/css" href="cube.css">
+</head>
+
+<body>
+	<div id="display"></div><br><br>
+	<a href="#" data-target="cube" data-action="open-box">open/close box</a>
+	<div id="container">
+		<div id="cube">
+			<div class="front"><span class="txt">click and drag</span></div>
+			<div class="back"></div>
+			<div class="right"></div>
+			<div class="left"></div>
+			<div class="top">
+				<div class="top-1"></div>
+				<div class="top-2"></div>
+				<div class="top-3"></div>
+				<div class="top-4"></div>
+			</div>
+			<div class="bottom"></div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script>
+	
+	(function($){
+		function mousedeg(){
+
+			var mouseX = 0;
+			var mouseY = 0;
+			var rotateX = 0;
+			var rotateY = 0;
+			var prevRotateX = 0;
+			var prevRotateY = 0;
+
+			var dragging = false;
+
+			$(document).on('mousedown', function(e){
+				dragging = true;
+				mouseX = e.pageX;
+				mouseY = e.pageY;
+			});
+
+			$(document).on('mousemove', function(e){
+
+				if(dragging == true){
+					rotateX = prevRotateX + (-(e.pageY - mouseY)*0.5); //vertical
+					rotateY = prevRotateY + ((e.pageX - mouseX)*0.5); //horizontal
+
+					$('#cube').css({
+						'transform':'translateZ( -10px ) rotateX('+rotateX+'deg) rotateY('+rotateY+'deg)',
+					});
+
+
+					//$('#display').html(Math.round(rotateX) + ', ' + Math.round(rotateY));
+				}
+			});
+
+			$(document).on('mouseup', function(e){
+				dragging = false;
+				prevRotateX = rotateX;
+				prevRotateY = rotateY;
+			});
+		}
+
+		function openBox(){
+			$('[data-action="open-box"]').on('click',function(e){
+				e.preventDefault();
+				target = $(this).attr('data-target');
+
+				$('#'+target).toggleClass('open');
+			});
+		}
+
+
+		$(document).ready(function(e) {
+
+			mousedeg();
+			openBox();
+		});
+		
+	})(jQuery);
+	
+
+	</script>
+</body>
+</html>

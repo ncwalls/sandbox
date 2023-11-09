@@ -1,0 +1,3 @@
+@mixin hideWhen($size){
+	@include media($size){ display: none; }
+}

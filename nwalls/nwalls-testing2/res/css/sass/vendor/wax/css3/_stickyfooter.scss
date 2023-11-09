@@ -1,0 +1,39 @@
+@mixin sticky-footer($wrapper, $footer, $heightmap){
+	/* http://css-tricks.com/snippets/css/sticky-footer/
+	 *
+	 * Use:
+	 * @include sticky-footer("#wrapper", "#footer", (
+	 *		$bp-desktop 100px,
+	 *		$bp-tablet 120px
+	 *	));
+	 *
+	 *	Or:
+	 *	@include sticky-footer("#wrapper", "#footer", 100px)
+	 *
+	 *	Note: When using a list of breakpoints, there must be more than one breakpoint.
+	 */
+
+
+	html, body { height: 100%; }
+	body{ min-height:100%;}
+	#{$wrapper}:after { content: ""; display: block; }
+	#{$wrapper}{ min-height: 100%;}
+	
+	@if (type-of($heightmap) == number){
+		#{$wrapper}{ min-height: 100%; margin-bottom: 0 - $heightmap; }
+		#{$wrapper}:after { content: ""; display: block; }
+		#{$footer}, #{$wrapper}:after { height: $heightmap; }
+	}
+
+	@if (type-of($heightmap) == list){		
+		@each $breakpoint in $heightmap{
+			$bp : nth($breakpoint, 1);
+			$h 	: nth($breakpoint, 2);
+
+			@include media($bp){				
+				#{$wrapper}{ margin-bottom: 0 - $h; }				
+				#{$footer}, #{$wrapper}:after { height: $h; }
+			}
+		}
+	}
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Website Name</title>
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="res/css/style.css">
+		
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+	</head>
+	<body class="parallax-page">
+		
+		<div id="photo">
+			<ul id="scene" class="scene">
+				<li class="layer" data-depth="0"><img src="parallax/1.jpg"></li>
+				<li class="layer" data-depth="0.10"><img src="parallax/2.png"></li>
+				<li class="layer" data-depth="0.2"><img src="parallax/3.png"></li>
+				<li class="layer" data-depth="0.30"><img src="parallax/4.png"></li>
+				<li class="layer" data-depth="0.40"><img src="parallax/5.png"></li>
+				<li class="layer" data-depth="0.70"><img src="parallax/6.png"></li>
+				<li class="layer layer7" data-depth="0.90"><img src="parallax/7.png"></li>
+			</ul>
+		</div>
+		
+		<script src="res/js/parallax.min.js"></script>
+
+		<script type="text/javascript">
+		
+			var scene = document.getElementById('scene');
+			var parallax = new Parallax(scene);
+			
+		</script>
+	</body>
+</html>

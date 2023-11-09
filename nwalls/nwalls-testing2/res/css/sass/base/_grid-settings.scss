@@ -1,0 +1,21 @@
+/* Grid Settings
+======================================================================================= */
+
+/* 1. Neat Settings
+=================================================================== */
+@import "../vendor/neat/neat-helpers";
+
+$column: 			72px;
+$gutter: 			24px;
+$grid-columns: 		24;
+$max-width: 		1180px;
+$mobile-first: 		false;
+$visual-grid:		false;
+$visual-grid-index:	front;
+
+/* 2. Neat Settings
+=================================================================== */
+$bp-mobile  : new-breakpoint(max-width 480px 24);
+$bp-tablet  : new-breakpoint(max-width 768px 24);
+$bp-laptop  : new-breakpoint(max-width 968px 24);
+$bp-desktop : new-breakpoint(min-width 969px 24);

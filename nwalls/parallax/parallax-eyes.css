@@ -1,0 +1,401 @@
+html{
+	min-height:100%;
+}
+body {
+	background:linear-gradient(#12182f, #a2c6b0);
+	margin: 0;
+	padding:0;
+	height:100%;
+	overflow:hidden;
+}
+
+#ground{
+	width:100%;
+	height:1000px;
+	margin-top:30px;
+	background:linear-gradient(#423222, #4f3d2b 10%);
+}
+
+#mood-nav{
+	width:100%;
+	padding:0;
+	margin:50px 0 0 0;
+	list-style:none;
+	text-align:center;
+	font-family:Verdana, sans-serif;
+	line-height:1em;
+	position:relative;
+	z-index:1000;
+}
+
+#mood-nav li{
+	display:inline-block;
+	padding:0.5em;
+	margin:0 0.5em;
+	cursor:pointer;
+	transition:all 0.2s;
+	color:#fff;
+	opacity:0.5
+}
+#mood-nav li:hover{
+	text-shadow:none;
+	opacity:1;
+	transform:scale(1.1);
+}
+
+#main-scene{
+	width:350px;
+	margin:0 auto -20px auto;
+	margin-top:50px;
+	position:relative;
+	z-index:100;
+}
+
+.scene{
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+
+#face{
+	width:100%;
+	padding:50px 0 0 0;
+	box-shadow:inset 0 0 20px rgba(0,0,0,0.2);
+	border-radius:40%;
+	background:linear-gradient(#44a72C, #34971C 50%);
+}
+
+#eyes {
+  position: relative;
+  width:220px;
+  height:100px;
+  margin:0 auto;
+  
+}
+
+#eyes .scene {
+	width:100px;
+	height:80px;
+	border-radius:50%;
+	float:left;
+	overflow:hidden;
+	box-shadow:0 0 10px rgba(0,0,0,0.3);
+}
+#left-eye{
+	margin-right:20px;
+}
+
+.layer{
+	width:100%;
+	height:100%;
+}
+
+
+.layer.eyeball{
+	border-radius:50%;
+	background:#eee;
+}
+
+
+.iris{
+	width:50px;
+	height:50px;
+	margin:auto;
+	border-radius:50%;
+	background:#2F5A94;
+	position:absolute;
+	top:0;
+	right:0;
+	left:0;
+	bottom:0;
+	box-shadow:inset 0 0 5px rgba(255,255,255,0.3);
+}
+.pupil{
+	width:25px;
+	height:25px;
+	margin:auto;
+	border-radius:50%;
+	background:#000;
+	position:absolute;
+	top:0;
+	right:0;
+	left:0;
+	bottom:0;
+	box-shadow:0 0 5px rgba(0,0,0,0.5);
+}
+
+.reflection{
+	width:70%;
+	height:40%;
+	border-radius:50%;
+	background:linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.3));
+	box-shadow:inset 0 0 5px rgba(255,255,255,0.3);
+	//opacity:0.6;
+	position:absolute;
+	top:10%;
+	right:15%;
+	//transform-origin:right top;
+	//transform:rotate(20deg);
+}
+
+.shading{
+	width:100%;
+	height:100%;
+	margin:0;
+	border-radius:50%;
+	overflow:hidden;
+	box-shadow:inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.eyelid{
+	width:102%;
+	height:102%;
+	margin:-1% 0 0 -1%;
+	border-radius:50%;
+	overflow:hidden;
+}
+.eyelid:before,
+.eyelid:after{
+	content:"";
+	display:block;
+	width:120%;
+	height:50%;
+	background:#24870C;
+	position:absolute;
+	right:-10%;
+	left:-10%;
+	transition:all 0.3s;
+	box-shadow:0 0 3px rgba(0,0,0,0.3);
+}
+
+.eyelid:before{
+	top:-50%;
+	transform-origin:center bottom;
+}
+.eyelid:after{
+	bottom:-50%;
+}
+
+.blink .eyelid:before,
+.blink .eyelid:after{
+	transition:none;
+}
+.blink .eyelid:before{
+	animation:blink-top 4s infinite;
+}
+.blink .eyelid:after{
+	animation:blink-bottom 4s infinite;
+}
+
+.closed .eyelid:before{
+	transform:translateY(100%);
+}
+.closed .eyelid:after{
+	transform:translateY(-100%);
+}
+
+.mad #left-eye .eyelid:before{
+	transform:translateY(50%) rotate(20deg);
+}
+.mad #right-eye .eyelid:before{
+	transform:translateY(50%) rotate(-20deg);
+}
+.mad #left-eye .eyelid:after{
+	transform:translateY(-10%) rotate(-10deg);
+}
+.mad #right-eye .eyelid:after{
+	transform:translateY(-10%) rotate(10deg);
+}
+
+.sad #left-eye .eyelid:before{
+	transform:translateY(50%) rotate(-20deg);
+}
+.sad #right-eye .eyelid:before{
+	transform:translateY(50%) rotate(20deg);
+}
+.sad #left-eye .eyelid:after{
+	transform:translateY(-30%);
+}
+.sad #right-eye .eyelid:after{
+	transform:translateY(-30%);
+}
+
+
+.squint .eyelid:before{
+	transform:translateY(80%);
+}
+.squint .eyelid:after{
+	transform:translateY(-80%);
+}
+
+.what .eyelid:before{
+	transform:translateY(00%);
+}
+.what .eyelid:after{
+	transform:translateY(-90%);
+}
+
+@keyframes blink-top {
+	0%   {
+		transform:translateY(0%);
+	}
+	4% {
+		transform:translateY(100%);
+	}
+	10%   {
+		transform:translateY(0%);
+	}
+	100%   {
+		transform:translateY(0%);
+	}
+}
+@keyframes blink-bottom {
+	0%   {
+		transform:translateY(0%);
+	}
+	4% {
+		transform:translateY(-100%);
+	}
+	10%   {
+		transform:translateY(0%);
+	}
+	100%   {
+		transform:translateY(0%);
+	}
+}
+
+
+
+#mouth.scene {
+	width:200px;
+	height:100px;
+	margin:20px auto 0 auto;
+}
+
+.mouth{
+	height:20px;
+	background:#34971C;
+	border-bottom:1px solid rgba(0,0,0,0.3);
+}
+.tongue-layer{
+	width:100%;
+	overflow:hidden;
+}
+.tongue{
+	width:40px;
+	height:40px;
+	margin:10px auto 0 auto;
+	position:relative;
+	left:50px;
+	border-radius:0 0 20px 20px;
+	background:linear-gradient(#BF5254, #FF9294 90%);
+	box-shadow:0 2px 5px rgba(0,0,0,0.3);
+}
+
+
+
+#arms{
+	width:80px;
+	height:0;
+	margin:0 auto;
+	position:relative;
+	z-index:100;
+}
+
+#body-main{
+	width:80px;
+	margin:0 auto;
+	position:relative;
+	z-index:1;
+}
+#body-main:after{
+	content:"";
+	display:block;
+	width:200%;
+	height:10px;
+	border-radius:50%;
+	background:rgba(0,0,0,0.2);
+	//box-shadow:0 1px 5px rgba(0,0,0,0.3);
+	position:absolute;
+	bottom:-75px;
+	right:-50%;
+	left:-50%;
+}
+
+#body-main div,
+#arms div{
+	margin:auto;
+	background:linear-gradient(#44a72C, #34971C 50%);
+}
+#body{
+	width:100%;
+	height:130px;
+	right:0;
+	left:0;
+	position:relative;
+	z-index:2;
+}
+#arm-left,
+#arm-right,
+#leg-left,
+#leg-right{
+	width:30px;
+	height:100px;
+	transform-origin:center 15px;
+	border-radius:15px;
+	position:absolute;
+	box-shadow:inset 0 0 20px rgba(0,0,0,0.2);
+}
+#arm-left{
+	top:30px;
+	left:-15px;
+	z-index:4;
+}
+#arm-right{
+	top:30px;
+	right:-15px;
+	z-index:3;
+}
+#leg-left{
+	top:100px;
+	left:-5px;
+	z-index:1;
+}
+#leg-right{
+	top:100px;
+	right:-5px;
+	z-index:1;
+}
+
+#bullet{
+	width:20px;
+	height:20px;
+	background:#fff;
+	position:fixed;
+	/*top:35px;
+	left:-10px;*/
+	border-radius:50%;
+	z-index:4;
+	opacity:0;
+}
+#bullet.anim{
+	transition:top 0.3s linear, left 0.3s linear;
+	box-shadow:0 0 20px #FCB0E4;
+	opacity:1;
+}
+.hit{
+	width:20px;
+	height:20px;
+	background:#000;
+	position:fixed;
+	border-radius:50%;
+	box-shadow:0 0 10px #000;
+	opacity:0;
+	transition:all 0.3s;
+}
+.hit.anim{
+	width:25px;
+	height:25px;
+	opacity:1;
+	box-shadow:0 0 10px #000;
+}

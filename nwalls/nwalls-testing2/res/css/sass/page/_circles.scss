@@ -1,0 +1,211 @@
+
+.circle{
+	width:250px;
+	height:250px;
+	position:relative;
+	border-radius:50%;
+	background:#000;
+}
+
+.inner-circle{
+	width:100%;
+	height:100%;
+	@include position(absolute, 0 0 0 0);
+	@include animation(circle 4s linear infinite);
+	
+	span{
+		display:block;
+		width:50%;
+		height:50%;
+		background:#fff;
+		border-radius:50%;
+		position:absolute;
+		margin:auto;
+		//opacity:0.5;
+		top:-25%;
+		right:0;
+		left:0;
+	}
+	
+	&:nth-child(1){
+		@include animation-delay(0s);
+		
+		/*span{
+			top:0;
+			right:0;
+			left:0;
+			//background:#FFBE00;
+		}*/
+	}
+	&:nth-child(2){
+		@include animation-delay(1s);
+		
+		/*span{
+			top:0;
+			right:0;
+			bottom:0;
+			//background:#81FF00;
+		}*/
+	}
+	&:nth-child(3){
+		@include animation-delay(3s);
+		
+		/*span{
+			top:0;
+			left:0;
+			bottom:0;
+			//background:#0054FF;
+		}*/
+	}
+	&:nth-child(4){
+		@include animation-delay(2s);
+		
+		/*span{
+			right:0;
+			bottom:0;
+			left:0;
+			//background:#8900FF;
+		}*/
+	}
+}
+@include keyframes(circle){
+	0%{
+		@include transform(rotate(0deg));
+	}
+	/*75%{
+		@include transform(rotate(359deg));
+	}*/
+	100%{
+		@include transform(rotate(359deg));
+	}
+	
+}
+
+
+/*
+.circle{
+	width:250px;
+	height:250px;
+	position:relative;
+	color:#fff;
+	
+	.title{
+		padding-top:100px;
+		font-size:2em;
+		text-align:center;
+		text-transform:uppercase;
+	}
+	
+	&.vis{
+	}
+	
+	.circle1{
+		display:block;
+		width:100%;
+		height:100%;
+		border-radius:50%;
+		background:#000;
+		position:absolute;
+		top:0;
+		left:0;
+		z-index:3;
+	}
+	.circle2{
+		display:block;
+		width:100%;
+		height:100%;
+		border-radius:50%;
+		background:#000;
+		position:absolute;
+		top:0;
+		left:100%;
+		z-index:3;
+		@include animation(copy 3s linear);
+	}
+	.stretch{
+		display:block;
+		width:50%;
+		height:50%;
+		background:#000;
+		position:absolute;
+		top:25%;
+		left:25%;
+		z-index:1;
+		@include animation(stretch 3s linear);
+	}
+	.space{
+		display:block;
+		width:100%;
+		height:50%;
+		border-radius:50%;
+		background:#fff;
+		position:absolute;
+		right:0;
+		left:0;
+		z-index:2;
+		margin:auto;
+		
+		&.top{
+			top:-25%;
+			@include animation(space-top 3s linear);
+		}
+		
+		&.bottom{
+			bottom:-25%;
+			@include animation(space-bottom 3s linear);
+		}
+	}
+	
+	&:hover{
+	}
+}
+
+@include keyframes(copy){
+	0%{
+		left:0%;
+	}
+	100%{
+		left:200%;
+	}
+	
+}
+@include keyframes(stretch){
+	0%{
+		width:0%;
+		height:100%;
+		top:0%;
+		left:50%;
+	}
+	50%{
+		width:100%;
+		height:100%;
+		top:0%;
+		left:50%;
+	}
+	100%{
+		width:200%;
+		height:50%;
+		top:25%;
+		left:50%;
+	}
+}
+@include keyframes(space-top){
+	0%{
+		height:0%;
+		top:0%;
+	}
+	100%{
+		height:100%;
+		top:-50%;
+	}
+}
+@include keyframes(space-bottom){
+	0%{
+		height:0%;
+		bottom:0%;
+	}
+	100%{
+		height:100%;
+		bottom:-50%;
+	}
+}*/

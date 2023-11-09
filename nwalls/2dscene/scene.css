@@ -1,0 +1,377 @@
+*,*:before,*:after{
+	box-sizing:border-box;
+}
+html{
+	min-height:100%;
+}
+body{
+	background: linear-gradient(#000, #333);
+	min-height:100%;
+	padding:5vh 0 0 0;
+	margin:0;
+	overflow:hidden;
+	text-align:center;
+	font-family:sans-serif;
+	/*background:linear-gradient(#4fbea3, #ffd967);*/
+}
+
+.container{
+	height: 90vh;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+	width: 1400px;
+}
+
+.bg{
+	background:linear-gradient(#9fc2b9, #e8daaf);
+	height: 80%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+.ground{
+	/*background: linear-gradient(#a13b1b, #c87028);*/
+	background: linear-gradient(#c36939, #ddac65);
+	height: 20%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 5;
+}
+
+.mountain{
+	background: linear-gradient(-45deg, #c36939 50%, #a34929);
+	/*background: #c36939;*/
+	/*opacity: 0.8;*/
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	right: 15%;
+	bottom: 0;
+	transform: translateY(50%) rotate(45deg);
+}
+.mountain.small{
+	width: 100px;
+	height: 100px;
+	right: 30%;
+}
+
+.mech{
+	animation: walk-mech 4.5s infinite linear;
+	position: absolute;
+	bottom: 80%;
+	left: 0;
+	width: 200px;
+	height: 255px;
+}
+
+.mech:after{
+	background: none;
+	background:radial-gradient(#000, rgba(0,0,0,0) 70%);
+	border-radius: 50%;
+	content: '';
+	display: block;
+	height: 15px;
+	opacity: 0.3;
+	position: absolute;
+	bottom: -30px;
+	left: -10%;
+	width: 120%;
+	z-index: 1;
+}
+
+.mech-body{
+	width: 200px;
+	height: 100px;
+	position: relative;
+	/*transform: translateY(10px);*/
+	z-index: 5;
+	animation: walk-body 1s infinite linear;
+	/*animation-delay: 0.5s;*/
+}
+
+.mech-head{
+	background:linear-gradient(#666, #444);
+	border-radius: 50px 100px 20% 25%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+}
+.mech-head:before{
+	background: linear-gradient( 90deg, #ff3c00, #ff683a);
+	border-radius: 2px;
+	box-shadow: 0 0 5px rgba(255,100,0,0.5);
+	content: '';
+	display: block;
+	position: absolute;
+	top: 23%;
+	right: 11%;
+	left: 1%;
+	height: 4px;
+	z-index: 3;
+}
+.mech-head:after{
+	background: linear-gradient( #555, #777);
+	border-radius: 60px 100px 20px 30px;
+	box-shadow: inset 0 1px 3px rgba(0,0,0,1);
+	content: '';
+	display: block;
+	opacity: 0.3;
+	position: absolute;
+	top: 40px;
+	left: 6%;
+	width: 67%;
+	height: 45px;
+	z-index: 1;
+}
+
+.upper-leg{
+	animation: walk-upper-leg 1s infinite linear;
+	background:linear-gradient(90deg, #444 0%,  #555 80%, #777 100%);
+	position: absolute;
+	top: 80%;
+	left: 25px;
+	width: 50px;
+	height: 80px;
+	z-index: 2;
+	transform-origin: 50% 0;
+	transform: rotate(-35deg);
+}
+
+.upper-leg.front{
+	/*transform: rotate(-35deg);*/
+	z-index: 3;
+}
+.upper-leg.back{
+	filter: brightness(0.8);
+	animation-delay: 0.5s;
+	/*transform: rotate(-35deg);*/
+	z-index: 1;
+}
+
+.upper-leg:before{
+	/*background:radial-gradient(#c4590a 50%, #a13b1b 70%);*/
+	background:radial-gradient(#444 50%, #666 70%);
+	border-radius: 50%;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+	content: '';
+	display: block;
+	width: 60px;
+	height: 60px;
+	/*opacity: 0.8;*/
+	position: absolute;
+	top: -30px;
+	left: -5px;
+	z-index: 3;
+}
+
+.upper-leg:after{
+	background:linear-gradient( #000, #333);
+	/*border-radius: 20px;*/
+	box-shadow: 0 1px 2px rgba(0,0,0,1);
+	content: '';
+	display: block;
+	opacity: 0.3;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 25%;
+	width: 50%;
+	/*height: 80%;*/
+	z-index: 1;
+}
+
+.lower-leg{
+	animation: walk-lower-leg 1s infinite linear;
+	background:linear-gradient(90deg, #777 0%,  #444 40%, #555 100%);
+	position: absolute;
+	top: 100%;
+	left: 10px;
+	width: 30px;
+	height: 100px;
+	z-index: 2;
+	transform-origin: 50% 0;
+	transform: rotate(70deg);
+}
+.lower-leg.front{
+	/*transform: rotate(70deg);*/
+}
+.lower-leg.back{
+	/*transform: rotate(70deg);*/
+	animation-delay: 0.5s;
+}
+
+.lower-leg:before{
+	background:radial-gradient(#444 50%, #666 70%);
+	border-radius: 50%;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+	content: '';
+	display: block;
+	width: 50px;
+	height: 50px;
+	/*opacity: 0.8;*/
+	position: absolute;
+	top: -25px;
+	left: -10px;
+	z-index: 3;
+}
+
+.lower-leg:after{
+	background:linear-gradient( #000, #333);
+	border-radius: 0 20px 0 0;
+	box-shadow: 0 1px 2px rgba(0,0,0,1);
+	content: '';
+	display: block;
+	opacity: 0.2;
+	position: absolute;
+	top: 37%;
+	bottom: 0;
+	left: 30%;
+	width: 40%;
+	/*height: 80%;*/
+	z-index: 1;
+}
+
+.foot{
+	animation: walk-foot 1s infinite linear;
+	background:linear-gradient(#777, #555 30%, #444);
+	border-radius: 10px 50% 5px 5px;
+	width: 110px;
+	height: 35px;
+	position: absolute;
+	top: 100%;
+	left: -10px;
+	z-index: 2;
+	transform-origin: 20% 5%;
+	transform: rotate(-35deg);
+}
+.foot.front{
+	/*transform: rotate(-35deg);*/
+}
+
+.foot.back{
+	/*transform: rotate(-35deg);*/
+	animation-delay: 0.5s;
+}
+
+
+.foot:before{
+	background:radial-gradient(#444 50%, #666 70%);
+	border-radius: 50%;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+	content: '';
+	display: block;
+	width: 40px;
+	height: 40px;
+	/*opacity: 0.8;*/
+	position: absolute;
+	top: -15px;
+	left: 10px;
+	z-index: 3;
+}
+
+.foot:after{
+	background: linear-gradient( #000, #555);
+	/*background: #fff;*/
+	border-radius: 8px 8px 0 0;
+	/*box-shadow: 0px -3px 2px rgb(0, 0, 0);*/
+	content: '';
+	display: block;
+	opacity: 0.3;
+	position: absolute;
+	bottom: 0;
+	left: 10px;
+	height: 15px;
+	z-index: 2;
+	right: 20%;
+}
+
+
+
+
+@keyframes walk-mech{
+	0% {
+	    transform: translateX(-400px);
+	}
+	100% {
+	    transform: translateX(1500px);
+	}
+}
+
+@keyframes walk-body{
+	0% {
+	    transform: translateY(0px);
+	}
+	20% {
+	    transform: translateY(-10px);
+	}
+	30% {
+	    transform: translateY(0px);
+	}
+	50% {
+	    transform: translateY(0px);
+	}
+	70%{
+	    transform: translateY(-10px);
+	}
+	80%{
+	    transform: translateY(0px);
+	}
+	100% {
+	    transform: translateY(0px);
+	}
+}
+
+@keyframes walk-upper-leg{
+	0% {
+	    transform: rotate(40deg);
+	}
+	30% {
+	    transform: rotate(-70deg);
+	}
+	100% {
+	    transform: rotate(40deg);
+	}
+}
+@keyframes walk-lower-leg{
+	0% {
+	    transform: rotate(20deg);
+	}
+	15% {
+	    transform: rotate(100deg);
+	}
+	30%{
+	    transform: rotate(100deg);
+	}
+	40% {
+	    transform: rotate(20deg);
+	}
+	100% {
+	    transform: rotate(20deg);
+	}
+}
+@keyframes walk-foot{
+	0% {
+	    transform: rotate(-40deg);
+	}
+	40% {
+	    transform: rotate(-40deg);
+	}
+	55% {
+	    transform: rotate(10deg);
+	}
+	80% {
+	    transform: rotate(-30deg);
+	}
+	100% {
+	    transform: rotate(-40deg);
+	}
+}

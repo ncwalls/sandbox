@@ -1,0 +1,105 @@
+body{
+	background: #ccc;
+	font-family: 'IM Fell Great Primer', serif;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+*,*:before,*:after{
+	box-sizing: border-box;
+}
+
+.container{
+	margin: 0 auto;
+	width: 80%;
+}
+
+.cards-container{
+	align-items: stretch;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	list-style: none;
+	margin: 100px 0 0 0;
+	padding: 0;
+}
+
+.card{
+	margin: 0 0 4% 0;
+	padding: 0;
+	position: relative;
+	perspective: 500px;/*
+	transition: transform 0.5s;
+	transform: translateZ(0);*/
+	width: 23%;
+	z-index: 1;
+}
+
+.card:hover{/*
+	transform: translateZ(200px);*/
+	z-index: 10;
+}
+
+.card:hover .front{
+	background: #ccc;
+	transform: rotateY(-180deg);
+}
+.card:hover .back{
+	background: #fff;
+	transform: rotateY(0deg);
+}
+
+.front,
+.back{
+	background: #fff;
+	backface-visibility: hidden;
+	border-radius: 10px;
+	/*box-shadow: 0 3px 5px rgba(0,0,0,0.3);*/
+	padding: 20px;
+	width: 100%;
+	transition: all 0.5s;
+}
+
+.front{
+	text-align: center;
+	position: relative;
+	/*z-index: 5;*/
+}
+
+.front .img{
+	background: no-repeat center center;
+	background-size: cover;
+	margin-bottom: 10px;
+	padding-bottom: 50%;
+	width: 100%;
+}
+
+.card .title{
+	font-size: 24px;
+	font-weight: 700;
+	margin-bottom: 5px;
+}
+
+.card .subtitle{
+	font-size: 14px;
+	letter-spacing: 0.2em;
+}
+
+.back{
+	background: #ccc;
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	transform: rotateY(180deg);
+	/*z-index: 1;*/
+}
+
+.card .back .title{
+	font-size: 20px;
+}
+
+.back .content{
+	margin-top: 10px;
+}

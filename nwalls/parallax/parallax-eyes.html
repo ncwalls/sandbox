@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+
+	<title>eyes</title>
+
+	<!-- Behavioral Meta Data -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<!-- Styles -->
+	<link rel="stylesheet" type="text/css" href="parallax-eyes.css"/>
+
+</head>
+<body>
+	
+	<ul id="mood-nav">
+		<li data-action="setMood" data-mood="mad">mad</li>
+		<li data-action="setMood" data-mood="sad">sad</li>
+		<li data-action="setMood" data-mood="what">what</li>
+		<li data-action="setMood" data-mood="blink">blink (default)</li>
+		<li data-action="setMood" data-mood="squint">squint</li>
+		<li data-action="setMood" data-mood="closed">closed</li>
+		<li><em>click anywhere to shoot</em></li>
+	</ul>
+	<div id="mousedeg"></div>
+	<ul id="main-scene" class="scene">
+		<li class="layer" data-depth="0.1">
+			<div id="face" class="blink">
+				<div id="eyes">
+					<ul id="left-eye" class="scene">
+						<li class="layer eyeball" data-depth="0.1"></li>
+						<li class="layer" data-depth="0.8"><div class="iris"></div></li>
+						<li class="layer" data-depth="1"><div class="pupil"></div></li>
+						<li class="layer" data-depth="0.2"><div class="reflection"></div></li>
+						<li class="layer eyelid" data-depth="0.1"></li>
+						<li class="layer shading" data-depth="0.1"></li>
+					</ul>
+					<ul id="right-eye" class="scene">
+						<li class="layer eyeball" data-depth="0.1"></li>
+						<li class="layer" data-depth="0.9"><div class="iris"></div></li>
+						<li class="layer" data-depth="1"><div class="pupil"></div></li>
+						<li class="layer" data-depth="0.2"><div class="reflection"></div></li>
+						<li class="layer eyelid" data-depth="0.1"></li>
+						<li class="layer shading" data-depth="0.1"></li>
+					</ul>
+				</div>
+				<ul id="mouth" class="scene">
+					<li class="layer tongue-layer" data-depth="0.5"><div class="tongue"></div></li>
+					<li class="layer mouth" data-depth="0.1"></li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+	<div id="arms">
+		<span id="bullet"></span>
+		<div id="arm-left"></div>
+		<div id="arm-right"></div>
+	</div>
+	<div id="body-main">
+		<div id="leg-left"></div>
+		<div id="leg-right"></div>
+		<div id="body"></div>
+	</div>
+	<div id="ground">
+	</div>
+	<!-- Scripts -->
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="parallax.min.js"></script>
+	<script>
+
+	// Pretty simple huh?
+	var sceneMain = document.getElementById('main-scene');
+	var scene1 = document.getElementById('left-eye');
+	var scene2 = document.getElementById('right-eye');
+	var scene3 = document.getElementById('mouth');
+	
+	var parallaxMain = new Parallax(sceneMain, {
+		//invertX: false,
+		//invertY: false,
+		scalarX: 5,
+		scalarY: 5
+	});
+	var parallax1 = new Parallax(scene1, {
+		invertX: false,
+		invertY: false,
+		scalarX: 20,
+		scalarY: 20
+	});
+	var parallax2 = new Parallax(scene2, {
+		invertX: false,
+		invertY: false,
+		scalarX: 20,
+		scalarY: 20
+	});
+	var parallax3 = new Parallax(scene3, {
+		invertX: false,
+		invertY: false,
+		scalarX: 20,
+		scalarY: 20
+	});
+	
+	function setMood(){
+		$('[data-action="setMood"]').on('click', function(){
+			var mood = $(this).attr('data-mood');
+			document.getElementById('face').className = mood;
+		});
+	}
+	
+	var w = $('#arm-left').offset().left;
+	var h = $('#arm-left').offset().top + 5;
+
+	function onResize(){
+		$(window).resize(function(e) {
+			w = $('#arm-left').offset().left;
+			h = $('#arm-left').offset().top + 5;
+			resetBullet();
+		});
+	}
+	
+	function mousedeg(){
+		//var w = $('#arm-left').offset().left + 5;
+		//var h = $('#arm-left').offset().top + 5;
+		var mouseX = 0, mouseY = 0;
+		var mouseRatio = 0;
+		var deg = 0;		
+		
+		$(document).mousemove(function(e){
+			mouseX = e.pageX - w;
+			mouseY = e.pageY - h;
+			mouseRatio = mouseY/mouseX;
+			deg = ((Math.atan(mouseRatio)) * 180/Math.PI) - 90;
+			if(mouseX < 0){
+				deg = deg + 180;
+			}
+			//$('#mousedeg').html(mouseY + ', ' + mouseX + ', ' + deg);
+			$('#arm-left').css('transform','rotate('+deg+'deg)');
+		});
+	}
+	
+	function resetBullet(){
+		$('#bullet').removeClass('anim').css({
+			'top':h,
+			'left':w
+		});
+	}
+		
+	function shoot(){
+		hits = 0;
+		$(document).on('click', function(e){
+			resetBullet();
+			$('#bullet').addClass('anim').css({
+				'top':e.pageY,
+				'left':e.pageX
+			});
+			$('body').append('<div class="hit" id="hit'+hits+'"></div>');
+			$('#hit'+hits).css({
+				'top':e.pageY,
+				'left':e.pageX
+			});
+			setTimeout(function(){
+				resetBullet();
+				$('#hit'+hits).addClass('anim');
+				hits++;
+			}, 300);
+		});
+	}
+	
+	$(document).ready(function(e) {
+		
+		$(document).trigger('mousemove');
+		setMood();
+		mousedeg();
+		resetBullet();
+		shoot();
+		onResize();
+
+	});
+	
+
+	</script>
+	
+
+</body>
+</html>

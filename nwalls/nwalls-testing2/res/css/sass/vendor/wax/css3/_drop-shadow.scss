@@ -1,0 +1,87 @@
+@function drop-shadow-ternary($condition, $if-value, $else-value) {
+    @if ($condition == true) {
+        @return $if-value;
+    } @else {
+        @return $else-value;
+    }
+}
+
+// Adds a curved shadow underneath the a block-level element.
+// Uses element's :before.
+//
+// @mixin curved-shadow
+//
+// @author Nicolas Gallagher 
+// @author Rahman McGinnis
+//
+// @param $Orientation	The orientation of shadow
+// @param $Position		Which side of the element will get the shadow
+// @param $Spread		Depth of shadow
+// @param $Curve		Shape of shadow
+// @param $Color 		Color of the box-shadow
+@mixin curved-shadow(
+	$Orientation: "horiz",
+	$Position 	: "both",
+	$Spread 	: 20px,
+	$Curve 		: 20px,
+	$Color 		: rgba(0,0,0,0.4)
+){
+	$Orientation : quote($Orientation);
+	$Position : quote($Position);
+	position: relative;
+	&:before{
+		content: ""; display: block;
+		z-index: -1;
+		//background: rgba(255,0,0,0.3);
+		@if $Orientation == "horiz" {
+			$Top 	: drop-shadow-ternary($Position == "bottom", 50%, 0px);
+			$Bottom : drop-shadow-ternary($Position == "top", 50%, 0px);
+			@include position( absolute, $Top $Spread $Bottom $Spread );
+			box-shadow: 0px 0px $Spread $Color;
+			border-radius: 50% / #{$Curve};
+		}
+		@if $Orientation == "vert"{
+			$Right 	: drop-shadow-ternary($Position == "left", 50%, 0px);
+			$Left 	: drop-shadow-ternary($Position == "right", 50%, 0px);
+			@include position( absolute, $Spread $Right $Spread $Left);
+			box-shadow: 0px 0px $Spread $Color;
+			border-radius: #{$Curve} / 50%;
+		}
+	}
+}
+
+// Adds bottom-padding and a bottom curved border to a block-level element.
+// Uses :before and :after to add two skewed/rotated shadows underneath the element.
+// @mixin	curled-shadow
+//
+// @author	Nicolas Gallagher 
+// @author	Rahman McGinnis
+//
+// @param $CurledX	The width of the curled edge
+// @param $CurledY	The height of the curled edge
+// @param $Color 	Color of the box-shadows
+@mixin curled-shadow(
+	$CurledX 	: 120px,
+	$CurledY 	: 6px,
+	$Color 		: rgba(0,0,0,0.4)
+){
+	position: relative;
+	padding-bottom: $CurledY;
+	border-radius: 0 0 #{$CurledX} #{$CurledX} / 0 0 #{$CurledY} #{$CurledY};
+	&:before, &:after{
+		content: ""; display: block;
+		position: absolute;
+		z-index: -1;
+		bottom:16px;
+		@include size( 50% 55% );
+		box-shadow: 0px 8px 12px $Color;
+	}
+	&:before{
+		left:10px;
+		@include transform( skew(-8deg) rotate(-3deg) );
+	}
+	&:after{
+		right:10px;
+		@include transform( skew(8deg) rotate(3deg) );
+	}	
+}
